@@ -29,7 +29,7 @@ const productSlice = createSlice({
 export default productSlice.reducer;
 
 export const fetchProducts = createAsyncThunk("Fetch/Data", async () => {
-  const data = await fetch("http://localhost:4000/data");
+  const data = await fetch("https://paratha-store.onrender.com/data");
   const response = await data.json();
   console.log(response);
   return response;
