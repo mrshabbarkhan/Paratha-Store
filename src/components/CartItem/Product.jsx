@@ -27,13 +27,13 @@ const Product = ({ item }) => {
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <div class="flex items-center hover:bg-primary -mx-8 px-6 py-5">
-        <div class="flex w-2/5">
+        <div class=" md:flex w-2/5 ">
           {/* <!-- product --> */}
-          <div class="w-20">
+          <div class="w-20 md:w-20">
             <img class="object-fill" src={item.img} alt="" />
           </div>
           <div class="flex flex-col justify-between ml-4 flex-grow">
-            <span class="font-bold text-sm">{item.name}</span>
+            <span class="font-bold text-sm ml-[-15px]">{item.name}</span>
             <span class="text-red-500 text-xs">{item.discription}</span>
             <button
               onClick={() => {
@@ -45,7 +45,7 @@ const Product = ({ item }) => {
             </button>
           </div>
         </div>
-        <div class="flex justify-center w-1/5">
+        <div class="flex justify-center pb-16 md:pb-0  md:w-1/5">
           <button onClick={() => handleDecrease(item)}>
             <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
               <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
@@ -64,10 +64,10 @@ const Product = ({ item }) => {
             </svg>
           </button>
         </div>
-        <span class="text-center w-1/5 font-semibold text-sm">
+        <span class="text-center w-1/5 font-semibold text-sm pb-16 md:pb-0">
           ₹{item.price}
         </span>
-        <span class="text-center w-1/5 font-semibold text-sm">
+        <span class="text-center w-1/5 font-semibold text-sm pb-16 md:pb-0">
           ₹{totalprice}
         </span>
       </div>

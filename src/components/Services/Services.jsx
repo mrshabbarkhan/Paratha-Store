@@ -3,7 +3,8 @@ import StarRatings from "react-star-ratings";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../Features/cart/Cart";
 import toast, { Toaster } from "react-hot-toast";
-import { setcategory } from "../../Features/cart/CartSlice";
+import { Puff } from "react-loader-spinner";
+import { FaCartShopping } from "react-icons/fa6";
 // const ServicesData = [
 //   {
 //     id: 1,
@@ -29,8 +30,9 @@ import { setcategory } from "../../Features/cart/CartSlice";
 // ];
 
 const Services = () => {
-  const { product } = useSelector((state) => state.products);
+  const { product, isloading } = useSelector((state) => state.products);
   const [categories, setcategories] = useState([]);
+  const [data, setdata] = useState(product);
   const dispatch = useDispatch();
   const notify = (name) => toast.success(`Added ${name}`);
   const handleAdd = (item) => {
@@ -44,8 +46,13 @@ const Services = () => {
   };
   useEffect(() => {
     getUniqparatha();
+    setdata(product);
   }, [product]);
 
+  const handleFilter = (cat) => {
+    const newItems = product.filter((newVal) => newVal.category === cat);
+    setdata(newItems);
+  };
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -65,7 +72,7 @@ const Services = () => {
                 return (
                   <button
                     className="bg-primary hover:bg-secondary text-white font-bold py-1 px-3 rounded-full"
-                    onClick={dispatch(setcategory(fooddata))}
+                    onClick={() => handleFilter(fooddata)}
                     key={index}>
                     {fooddata}
                   </button>
@@ -73,55 +80,124 @@ const Services = () => {
               })}
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 place-items-center">
-            {product.map((item) => (
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="300"
-                className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-primary dark:hover:bg-primary hover:text-white relative shadow-xl duration-high group max-w-[350px] mb-20">
-                <div className="h-[100px]">
-                  <img
-                    src={item.img}
-                    alt=""
-                    className="max-w-[200px] h-[140px] mx-20 transform -translate-y-14
-                  group-hover:scale-105 group-hover:rotate-6 duration-300 rounded-3xl"
-                  />
-                </div>
-                <div className="p-4 text-center">
-                  <div className="w-full ">
-                    <StarRatings
-                      rating={4}
-                      starRatedColor="yellow"
-                      isSelectable={false}
-                      starHoverColor="yellow"
-                      // starSelectingHoverColor
-                      starDimension="20px"
-                      changeRating={() => {}}
-                      numberOfStars={5}
-                      name="rating"
-                    />
-                  </div>
-                  <h1 className="text-xl font-bold">
-                    {item.name}
-                    <span className="flex justify-center">
-                      {" "}
-                      <h1 class=" text-1xl font-sans antialiased font-medium leading-relaxed text-blue-gray-900">
-                        {item.price}₹
-                      </h1>
-                      <button
-                        className=" text-sm"
-                        onClick={() => handleAdd(item)}>
-                        Add to cart
-                      </button>
-                    </span>
-                  </h1>
-                  <p className="text-gray-500 group-hover:text-white duration-high text-sm line-clamp-2">
-                    {item.description}
-                  </p>
-                </div>
+          {isloading ? (
+            <>
+              <div className="flex justify-center">
+                <Puff
+                  visible={true}
+                  height="100"
+                  width="100"
+                  color="#FEBF01"
+                  ariaLabel="puff-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
               </div>
-            ))}
-          </div>
+            </>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 place-items-center">
+              {data ? (
+                <>
+                  {data.map((item) => (
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-duration="300"
+                      className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-primary dark:hover:bg-primary hover:text-white relative shadow-xl duration-high group max-w-[350px] mb-20">
+                      <div className="h-[100px]">
+                        <img
+                          className="max-w-[200px] h-[140px] mx-20 transform -translate-y-14
+      group-hover:scale-105 group-hover:rotate-6 duration-300 rounded-3xl"
+                          src={item.img}
+                          alt=""
+                        />
+                      </div>
+                      <div className="p-4 text-center">
+                        <div className="w-full ">
+                          <StarRatings
+                            rating={4}
+                            starRatedColor="yellow"
+                            isSelectable={false}
+                            starHoverColor="yellow"
+                            starDimension="20px"
+                            changeRating={() => {}}
+                            numberOfStars={5}
+                            name="rating"
+                          />
+                        </div>
+                        <h1 className="text-xl font-bold">
+                          {item.name}
+                          <span className="flex justify-center flex-initial w-100">
+                            {" "}
+                            <h1 class=" text-1xl font-sans antialiased font-medium leading-relaxed text-blue-gray-900">
+                              {item.price}₹
+                            </h1>
+                            <button
+                              className="h-7 mx-2  mt-1"
+                              onClick={() => handleAdd(item)}>
+                              <FaCartShopping />
+                            </button>
+                          </span>
+                        </h1>
+                        <p className="text-gray-500 group-hover:text-white duration-high text-sm line-clamp-2">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {data.map((item) => (
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-duration="300"
+                      className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-primary dark:hover:bg-primary hover:text-white relative shadow-xl duration-high group max-w-[350px] mb-20">
+                      <div className="h-[100px]">
+                        <img
+                          src={item.img}
+                          alt=""
+                          className="max-w-[200px] h-[140px] mx-20 transform -translate-y-14
+      group-hover:scale-105 group-hover:rotate-6 duration-300 rounded-3xl"
+                        />
+                      </div>
+                      <div className="p-4 text-center">
+                        <div className="w-full ">
+                          <StarRatings
+                            rating={4}
+                            starRatedColor="yellow"
+                            isSelectable={false}
+                            starHoverColor="yellow"
+                            // starSelectingHoverColor
+                            starDimension="20px"
+                            changeRating={() => {}}
+                            numberOfStars={5}
+                            name="rating"
+                          />
+                        </div>
+                        <h1 className="text-xl font-bold">
+                          {item.name}
+                          <span className="flex justify-center flex-initial w-100">
+                            {" "}
+                            <h1 class=" text-1xl font-sans antialiased font-medium leading-relaxed text-blue-gray-900">
+                              {item.price}₹
+                            </h1>
+                            <button
+                              className=" text-sm "
+                              onClick={() => handleAdd(item)}>
+                              Add cart
+                            </button>
+                          </span>
+                        </h1>
+                        <p className="text-gray-500 group-hover:text-white duration-high text-sm line-clamp-2">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>

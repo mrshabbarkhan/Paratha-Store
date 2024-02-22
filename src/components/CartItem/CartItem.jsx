@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Product from "./Product";
@@ -6,10 +6,18 @@ import Product from "./Product";
 const CartItem = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const total = cartItems.reduce((p, c) => p + c.price * c.qty, 0);
+  const getInitialState = () => {
+    const value = "0";
+    return value;
+  };
+  const [price, setprice] = useState(getInitialState);
+  const handleChange = (e) => {
+    setprice(e.target.value);
+  };
   return (
-    <div class="container mx-auto mt-10">
-      <div class="flex shadow-md my-10">
-        <div class="w-3/4 bg-white dark:bg-gray-900 dark:text-white duration-200 px-10 py-10">
+    <div class="flex container mx-auto flex-row">
+      <div class="flex w-full flex-col lg:flex-row shadow-md">
+        <div class="lg:w-3/4 bg-white dark:bg-gray-900 dark:text-white duration-200 px-10 py-10 w-full">
           <div class="flex justify-between border-b pb-8">
             <h1 class="font-semibold text-2xl">Shopping Cart</h1>
             <h2 class="font-semibold text-2xl">{cartItems.length} Items</h2>
@@ -53,7 +61,7 @@ const CartItem = () => {
           </Link>
         </div>
 
-        <div id="summary" class="w-1/4 px-8 py-10">
+        <div id="summary" class=" lg:w-1/4 px-8 py-10">
           <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
           <div class="flex justify-between mt-10 mb-5">
             <span class="font-semibold text-sm uppercase">
@@ -65,7 +73,10 @@ const CartItem = () => {
             <label class="font-medium inline-block mb-3 text-sm uppercase">
               Shipping
             </label>
-            <select class="block p-2 text-gray-600 w-full text-sm">
+            <select
+              value={price}
+              onChange={handleChange}
+              class="block p-2 text-gray-600 w-full text-sm">
               <option value={0}>
                 Upto 5 km - <span className="text-green-500">Free</span>
               </option>
@@ -91,9 +102,10 @@ const CartItem = () => {
             Apply
           </button>
           <div class="border-t mt-8">
+            <p class="mt-2">Shipping: {price}</p>
             <div class="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>₹{total}</span>
+              <span>₹{total + +price}</span>
             </div>
             <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
               Checkout
