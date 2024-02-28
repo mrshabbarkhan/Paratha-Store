@@ -11,9 +11,13 @@ const CartItem = () => {
     return value;
   };
   const [price, setprice] = useState(getInitialState);
+  const promocode = "code10";
+  const [code, setcode] = useState("");
+  let discount = 0;
   const handleChange = (e) => {
     setprice(e.target.value);
   };
+
   return (
     <div class="flex container mx-auto flex-row">
       <div class="flex w-full flex-col lg:flex-row shadow-md">
@@ -22,8 +26,8 @@ const CartItem = () => {
             <h1 class="font-semibold text-2xl">Shopping Cart</h1>
             <h2 class="font-semibold text-2xl">{cartItems.length} Items</h2>
           </div>
-          <div class="flex mt-10 mb-5">
-            <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">
+          <div class="hidden md:flex mt-10 mb-5">
+            <h3 class="font-semibold text-gray-600 text-xs uppercase  w-2/5">
               Product Details
             </h3>
             <h3 class="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
@@ -73,17 +77,23 @@ const CartItem = () => {
             <label class="font-medium inline-block mb-3 text-sm uppercase">
               Shipping
             </label>
-            <select
-              value={price}
-              onChange={handleChange}
-              class="block p-2 text-gray-600 w-full text-sm">
-              <option value={0}>
-                Upto 5 km - <span className="text-green-500">Free</span>
-              </option>
-              <option value={15}>Range 5-8 km - ₹15.00</option>
-              <option value={25}>Range 9-15 km - ₹25.00</option>
-              <option value={40}>Range Above 15 km - ₹40.00</option>
-            </select>
+            {cartItems.length === 0 ? (
+              <select class="block p-2 text-gray-600 w-full text-sm">
+                <option value="">Your Cart is Empty</option>
+              </select>
+            ) : (
+              <select
+                value={price}
+                onChange={handleChange}
+                class="block p-2 text-gray-600 w-full text-sm">
+                <option value={0}>
+                  Upto 5 km - <span className="text-green-500">Free</span>
+                </option>
+                <option value={15}>Range 5-8 km - ₹15.00</option>
+                <option value={25}>Range 9-15 km - ₹25.00</option>
+                <option value={40}>Range Above 15 km - ₹40.00</option>
+              </select>
+            )}
           </div>
           <div class="py-10">
             <label
@@ -91,21 +101,35 @@ const CartItem = () => {
               class="font-semibold inline-block mb-3 text-sm uppercase">
               Promo Code
             </label>
+
             <input
               type="text"
               id="promo"
-              placeholder="Enter your code"
+              value={code}
+              onChange={(e) => setcode(e.target.value)}
+              placeholder="Enter promo code"
               class="p-2 text-sm w-full text-black"
             />
+            {promocode == code ? (
+              <p className="text-xs text-green-600 ml-2">Promocode Applied !</p>
+            ) : (
+              <p className="text-xs text-red-700 ml-2">Enter valid Promocode</p>
+            )}
           </div>
-          <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">
-            Apply
-          </button>
-          <div class="border-t mt-8">
-            <p class="mt-2">Shipping: {price}</p>
+
+          <div class="border-t">
+            <div class="flex font-semibold justify-between text-sm">
+              <p>Discount:</p>
+              <p>-₹{promocode == code ? (discount = 10) : (discount = 0)}</p>
+            </div>
+
+            <div class="flex font-semibold justify-between text-sm ">
+              <p>Shipping:</p>
+              <p>₹{price}</p>
+            </div>
             <div class="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>₹{total + +price}</span>
+              <span>₹{total + +price - discount}</span>
             </div>
             <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
               Checkout

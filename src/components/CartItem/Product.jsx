@@ -1,10 +1,11 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { decrease, increase, remove } from "../../Features/cart/Cart";
 import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
 
 const Product = ({ item }) => {
   const [count, setcount] = useState(item.qty);
+  const [souse, setsouse] = useState(false);
 
   const dispatch = useDispatch();
   const handleremove = (id) => {
@@ -23,6 +24,7 @@ const Product = ({ item }) => {
       icon: "👏",
     });
   const totalprice = item.price * count;
+
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -32,17 +34,27 @@ const Product = ({ item }) => {
           <div class="w-20 md:w-20">
             <img class="object-fill" src={item.img} alt="" />
           </div>
-          <div class="flex flex-col justify-between ml-4 flex-grow">
-            <span class="font-bold text-sm ml-[-15px]">{item.name}</span>
-            <span class="text-red-500 text-xs">{item.discription}</span>
+          <div class="flex flex-col justify-between flex-grow">
+            <span class="font-bold text-sm md:ml-[25px]">{item.name}</span>
             <button
               onClick={() => {
                 handleremove(item.id);
                 notify();
               }}
-              class="font-semibold hover:text-red-500 text-gray-500 text-xs">
+              class="font-semibold hover:text-red-500 text-gray-500 text-xs w-1 md:ml-[25px]">
               Remove
             </button>
+          </div>
+          <div className="text-xs text-zinc-700 mt-8">
+            <label>
+              Extra Souce
+              <input
+                className="ml-2"
+                type="checkbox"
+                checked={souse}
+                onChange={() => setsouse(!souse)}
+              />
+            </label>
           </div>
         </div>
         <div class="flex justify-center pb-16 md:pb-0  md:w-1/5">
@@ -68,7 +80,7 @@ const Product = ({ item }) => {
           ₹{item.price}
         </span>
         <span class="text-center w-1/5 font-semibold text-sm pb-16 md:pb-0">
-          ₹{totalprice}
+          ₹{souse ? totalprice + 5 : totalprice}
         </span>
       </div>
     </>

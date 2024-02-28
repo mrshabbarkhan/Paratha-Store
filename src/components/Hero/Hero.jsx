@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
-import BiryaniImg1 from "../../assets/biryani3.png";
-import BiryaniImg2 from "../../assets/biryani5.png";
-import BiryaniImg3 from "../../assets/biryani2.png";
+// import BiryaniImg1 from "../../assets/biryani3.png";
+import paratha1 from "../../assets/paratha1.png";
+import paratha2 from "../../assets/paratha2.png";
+import paratha3 from "../../assets/paratha3.png";
+// import BiryaniImg2 from "../../assets/biryani5.png";
+// import BiryaniImg3 from "../../assets/biryani2.png";
 import Vector from "../../assets/vector3.png";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../../Features/ProductSlice/ProductSlice";
@@ -9,25 +12,25 @@ import { fetchProducts } from "../../Features/ProductSlice/ProductSlice";
 const ImageList = [
   {
     id: 1,
-    img: BiryaniImg1,
+    img: paratha1,
   },
   {
     id: 2,
-    img: BiryaniImg2,
+    img: paratha2,
   },
   {
     id: 3,
-    img: BiryaniImg3,
+    img: paratha3,
   },
 ];
 
 const Hero = () => {
-  const [imageId, setImageId] = React.useState(BiryaniImg1);
+  const [imageId, setImageId] = React.useState(paratha2);
 
-  const dispatch =useDispatch()
-  useEffect(()=>{
-    dispatch(fetchProducts())
-  },[])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
   const bgImage = {
     backgroundImage: `url(${Vector})`,
     backgroundPosition: "center",
@@ -41,8 +44,7 @@ const Hero = () => {
     <>
       <div
         className="min-h-[550px] sm:min-h-[600px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200"
-        style={bgImage}
-      >
+        style={bgImage}>
         <div className="container pb-8 sm:pb-0">
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {/* text content section */}
@@ -50,8 +52,7 @@ const Hero = () => {
               data-aos="zoom-out"
               data-aos-duration="400"
               data-aos-once="true"
-              className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1"
-            >
+              className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold">
                 Welcome{" "}
                 <span class="bg-clip-text text-transparent bg-gradient-to-b from-primary to-secondary">
@@ -78,10 +79,10 @@ const Hero = () => {
                   data-aos-once="true"
                   src={imageId}
                   alt="biryani img"
-                  className="w-[300px] sm:w-[450px] sm:scale-125  mx-auto spin "
+                  className="w-[300px] sm:w-[370px] sm:scale-125  mx-auto spin"
                 />
               </div>
-              <div className="flex lg:flex-col lg:top-1/2 lg:-translate-y-1/2 lg:py-2 justify-center gap-4 absolute bottom-[0px] lg:-right-10 bg-white/30 rounded-full">
+              <div className="flex lg:flex-col lg:top-1/2 lg:-translate-y-1/2 lg:py-8 justify-center absolute bottom-[0px] lg:-right-10 bg-white/30 rounded-full">
                 {ImageList.map((item) => (
                   <img
                     data-aos="zoom-in"
@@ -91,14 +92,14 @@ const Hero = () => {
                     onClick={() => {
                       setImageId(
                         item.id === 1
-                          ? BiryaniImg1
+                          ? paratha1
                           : item.id === 2
-                          ? BiryaniImg2
-                          : BiryaniImg3
+                          ? paratha2
+                          : paratha3
                       );
                     }}
                     alt="biryani img"
-                    className="max-w-[80px] h-[80px] object-contain inline-block hover:scale-105 duration-200"
+                    className="max-w-[100px] h-[100px] object-contain inline-block hover:scale-105 duration-200"
                   />
                 ))}
               </div>
