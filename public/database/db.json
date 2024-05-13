@@ -56,12 +56,12 @@
     },
       {
       "id": 7,
-      "img": "https://b.zmtcdn.com/data/dish_photos/f24/0d6673fdece45efd2a47b556f17d2f24.jpg?fit=around|130:130&crop=130:130;*,*",
-      "name": "Paneer Paratha",
-      "price": 100,
-      "description": "Extra Sauce, Yogurt, Cheese",
+      "img": "https://canopy-theme-natural.myshopify.com/cdn/shop/files/CANOPYNaturalProductImages_0007_PassionFruitA.jpg?v=1711830267&width=320",
+      "name": "Fresh Passion Fruit",
+      "price": 150,
+      "description": "Fresh fruits before 7 days.",
       "qty": 1,
-      "category": "Cheese paratha"
+      "category": "Fruits"
     }
   ]
 }
