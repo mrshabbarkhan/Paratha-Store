@@ -4,21 +4,21 @@ import Slider from "react-slick";
 const testimonialData = [
   {
     id: 1,
-    name: "Samuel",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/101/101",
+    name: "Abhishek Sharma",
+    text: "Absolutely loved the parathas here! They're always fresh, hot, and bursting with flavor.The variety of fillings is impressive, and each one is as delicious as the next. The service is also fantastic,",
+    img: "https://media.licdn.com/dms/image/D4D03AQGW2Nuk26Ot5A/profile-displayphoto-shrink_200_200/0/1703939107791?e=2147483647&v=beta&t=MS2E3ZeWx7XRSkr-f6DEcefMa_LdgFQM4nDTkAwHFTI",
   },
   {
     id: 1,
-    name: "John Doe",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/102/102",
+    name: "Ankit Chouhan",
+    text: "I can not get enough of the parathas from this store! They are consistently delicious, and you can tell they are made with high-quality ingredients.",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQEtA6SvVsE3COLWRMShp-2EKG49MP_u-UQ&s",
   },
   {
     id: 1,
-    name: "Smith",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/103/103",
+    name: "Akshay Nagdiya",
+    text: "As an avid paratha enthusiast, I have to say that this store exceeds all expectations! The parathas are crispy on the outside and soft on the inside, with a perfect balance of spices in every bite. ",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoRPggC_D-yB7-wxrRMNRAnPJPBLIJ-MxheQ&s",
   },
 ];
 

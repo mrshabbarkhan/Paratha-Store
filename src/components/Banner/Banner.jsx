@@ -35,7 +35,7 @@ const Banner = () => {
               {/* text content section */}
               <div className="flex flex-col justify-center gap-6 sm:pt-0">
                 <h1 className="text-3xl sm:text-4xl font-bold">
-                  Lorem, ipsum dolor.
+                  Our Services
                 </h1>
                 <p className="text-sm text-gray-500 tracking-wide leading-5">
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -43,10 +43,7 @@ const Banner = () => {
                   optio
                   <br />
                   <br />
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Beatae ab sed, exercitationem minima aliquid eligendi
-                  distinctio? Fugit repudiandae numquam hic quo recusandae.
-                  Excepturi totam ad nam velit quasi quidem aspernatur.
+                  Welcome to our cozy corner of culinary delight! At our paratha store, we craft each delectable piece with love and tradition, ensuring every bite is a journey through the rich flavors of Indian cuisine
                 </p>
                 <div className="flex gap-6">
                   <div>
